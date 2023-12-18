@@ -134,7 +134,7 @@ export default function Home() {
   return (
     <div className=" flex flex-col gap-4">
       <div className=" flex flex-col gap-2">
-        <span>链（选要打铭文的链）:</span>
+        <span>Network :</span>
         <TextField
           select
           defaultValue="eth"
@@ -157,12 +157,12 @@ export default function Home() {
       </div>
 
       <div className=" flex flex-col gap-2">
-        <span>私钥（必填，每行一个）:</span>
+        <span>Clé privée :</span>
         <TextField
           multiline
           minRows={2}
           size="small"
-          placeholder="私钥，带不带 0x 都行，程序会自动处理"
+          placeholder="Clé privée, avec ou sans 0x, le programme la gérera automatiquement"
           disabled={running}
           onChange={(e) => {
             const text = e.target.value;
@@ -194,23 +194,23 @@ export default function Home() {
         <FormControlLabel
           value="meToMe"
           control={<Radio />}
-          label="自转"
+          label="Même Wallet"
           disabled={running}
         />
         <FormControlLabel
           value="manyToOne"
           control={<Radio />}
-          label="多转一"
+          label="Envoyer sur un autre wallet"
           disabled={running}
         />
       </RadioGroup>
 
       {radio === "manyToOne" && (
         <div className=" flex flex-col gap-2">
-          <span>转给谁的地址（必填）:</span>
+          <span>Adresse de reception :</span>
           <TextField
             size="small"
-            placeholder="地址"
+            placeholder="ex: 0x7rgf6512er9g84erg984erg654..."
             disabled={running}
             onChange={(e) => {
               const text = e.target.value;
@@ -221,10 +221,10 @@ export default function Home() {
       )}
 
       <div className=" flex flex-col gap-2">
-        <span>铭文（选填，原始铭文，不是转码后的十六进制）:</span>
+        <span>Contrat d&#39;inscription :</span>
         <TextField
           size="small"
-          placeholder={`铭文，不要输入错了，多检查下，例子：\n${example}`}
+          placeholder={`Inscription, ne vous trompez pas, vérifiez plus, exemple：\n${example}`}
           disabled={running}
           onChange={(e) => {
             const text = e.target.value;
@@ -235,7 +235,7 @@ export default function Home() {
 
       <div className=" flex flex-col gap-2">
         <span>
-          RPC (选填, 默认公共有瓶颈经常失败, 最好用付费的, http 或者 ws 都可以):
+          RPC alternatif en cas d&#39;engorgement ( https ou wss ):
         </span>
         <TextField
           size="small"
@@ -259,25 +259,25 @@ export default function Home() {
         <FormControlLabel
           value="tip"
           control={<Radio />}
-          label="额外矿工小费"
+          label="Tip supplémentaire pour le mineur"
           disabled={running}
         />
         <FormControlLabel
           value="all"
           control={<Radio />}
-          label="总 gas"
+          label="Total gas"
           disabled={running}
         />
       </RadioGroup>
 
       <div className=" flex flex-col gap-2">
-        <span>{gasRadio === "tip" ? "额外矿工小费" : "总 gas"} (选填):</span>
+        <span>{gasRadio === "tip" ? "Tip" : "Total gas"} (Facultatif):</span>
         <TextField
           type="number"
           size="small"
           placeholder={`${
-            gasRadio === "tip" ? "默认 0" : "默认最新"
-          }, 单位 gwei，例子: 10`}
+            gasRadio === "tip" ? "défaut 0" : "Dernier par défaut"
+          }, Unité gwei，exemple: 10`}
           disabled={running}
           onChange={(e) => {
             const num = Number(e.target.value);
@@ -287,11 +287,11 @@ export default function Home() {
       </div>
 
       <div className=" flex flex-col gap-2">
-        <span>每笔交易间隔时间 (选填, 最低 0 ms):</span>
+        <span>Temps entre chaque transaction (facultatif, minimum 0 ms):</span>
         <TextField
           type="number"
           size="small"
-          placeholder="默认 0 ms"
+          placeholder="defaut 0 ms"
           disabled={running}
           onChange={(e) => {
             const num = Number(e.target.value);
@@ -311,11 +311,11 @@ export default function Home() {
           }
         }}
       >
-        {running ? "运行中" : "运行"}
+        {running ? "En cours d'exécution" : "Démarrer"}
       </Button>
 
       <Log
-        title={`日志（成功次数 => ${successCount}）:`}
+        title={`Mint réussis : ${successCount}`}
         logs={logs}
         onClear={() => {
           setLogs([]);

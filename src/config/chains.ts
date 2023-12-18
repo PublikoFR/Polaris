@@ -90,11 +90,33 @@ export const kcc = defineChain({
   },
 });
 
+export const conflux = defineChain({
+  id: 1030,
+  name: "Conflux eSpace",
+  network: "Conflux eSpace",
+  nativeCurrency: {
+    decimals: 18,
+    name: "CFX",
+    symbol: "CFX",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://evm.confluxrpc.com"],
+    },
+    public: {
+      http: ["https://evm.confluxrpc.com"],
+    },
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://evm.confluxscan.net" },
+  },
+});
+
 export const inscriptionChains = {
   eth: mainnet,
   bsc,
   opBNB,
-  // okc,
+  okc,
   polygon,
   fantom,
   avalanche,
@@ -116,6 +138,7 @@ export const inscriptionChains = {
   filecoin,
   shibarium,
   sepolia,
+  conflux
 };
 
 export type ChainKey = keyof typeof inscriptionChains;
