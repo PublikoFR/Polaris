@@ -130,7 +130,7 @@ export const gate = defineChain({
     },
   },
   blockExplorers: {
-    default: { name: "Explorer", url: "https://evm.confluxscan.net" },
+    default: { name: "Explorer", url: "https://gatescan.org/" },
   },
 });
 
