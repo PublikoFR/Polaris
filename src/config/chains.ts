@@ -112,6 +112,28 @@ export const conflux = defineChain({
   },
 });
 
+export const gate = defineChain({
+  id: 86,
+  name: "GateChain Mainnet",
+  network: "GateChain Mainnet",
+  nativeCurrency: {
+    decimals: 18,
+    name: "GT",
+    symbol: "GT",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://evm.gatenode.cc"],
+    },
+    public: {
+      http: ["https://evm.gatenode.cc"],
+    },
+  },
+  blockExplorers: {
+    default: { name: "Explorer", url: "https://evm.confluxscan.net" },
+  },
+});
+
 export const inscriptionChains = {
   eth: mainnet,
   bsc,
@@ -138,7 +160,8 @@ export const inscriptionChains = {
   filecoin,
   shibarium,
   sepolia,
-  conflux
+  conflux,
+  gate
 };
 
 export type ChainKey = keyof typeof inscriptionChains;
